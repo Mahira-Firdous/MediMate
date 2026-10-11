@@ -1,0 +1,581 @@
+
+/* ==============================
+   MEDIMATE — MODERN DASHBOARD
+   ============================== */
+
+:root {
+    --primary: #087f8c;
+    --primary-dark: #06636d;
+    --primary-light: #e4f6f6;
+    --background: #f4f8fb;
+    --surface: #ffffff;
+    --text: #20313d;
+    --muted: #647582;
+    --border: #dce6eb;
+    --success: #187548;
+    --success-bg: #e8f7ee;
+    --warning: #a66308;
+    --warning-bg: #fff4df;
+    --danger: #bb3030;
+    --danger-bg: #fff0f0;
+    --shadow: 0 5px 22px rgba(27, 56, 72, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    background: var(--background);
+    color: var(--text);
+}
+
+h1, h2, h3, p {
+    overflow-wrap: anywhere;
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 1.3;
+    margin-top: 0;
+}
+
+h3 {
+    line-height: 1.4;
+}
+
+/* Header */
+
+.header {
+    background: linear-gradient(135deg, #075d68, #0b99a2);
+    color: white;
+    text-align: center;
+    padding: 30px 18px;
+    box-shadow: 0 4px 16px rgba(8, 127, 140, 0.15);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(30px, 5vw, 42px);
+    letter-spacing: -1px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    color: #e0f7f7;
+}
+
+/* Main layout */
+
+.container {
+    width: min(1100px, 92%);
+    margin: 30px auto;
+}
+
+.welcome {
+    padding: 25px 28px;
+    margin-bottom: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.welcome h2 {
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    margin: 6px 0;
+    color: var(--muted);
+}
+
+.welcome strong {
+    color: var(--text);
+}
+
+/* Statistics dashboard */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    padding: 20px;
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--primary);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 25px rgba(27, 56, 72, 0.10);
+}
+
+.stat-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stat-card h2 {
+    margin: 8px 0 0;
+    color: var(--primary-dark);
+    font-size: 32px;
+}
+
+/* Cards and sections */
+
+.card,
+.dose-card,
+.medicine-item {
+    background: var(--surface);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.card > h2,
+.schedule > h2 {
+    margin-bottom: 18px;
+}
+
+.schedule {
+    margin: 30px 0;
+}
+
+.schedule > h2 {
+    margin-bottom: 18px;
+}
+
+/* Feedback messages */
+
+.flash-messages {
+    margin-bottom: 22px;
+}
+
+.flash-messages p {
+    margin: 0 0 10px;
+    padding: 13px 16px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    border: 1px solid #b8e5e7;
+    border-radius: 10px;
+}
+
+/* Forms */
+
+.medicine-form,
+.chat-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 8px;
+    font-weight: 650;
+    color: var(--text);
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid #cbd9e0;
+    border-radius: 9px;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.13);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+small {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Buttons and links */
+
+button,
+.caregiver-link,
+.edit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: 9px;
+    padding: 11px 16px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover,
+.caregiver-link:hover,
+.edit-button:hover {
+    transform: translateY(-1px);
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #e4a323;
+    outline-offset: 3px;
+}
+
+.primary-button {
+    align-self: flex-start;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.taken-button {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.taken-button:hover {
+    background: #d1f0dc;
+}
+
+.missed-button {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.missed-button:hover,
+.delete-button:hover {
+    background: #ffdddd;
+}
+
+.delete-button {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.edit-button {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+/* Dose schedule */
+
+.dose-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-left: 5px solid var(--primary);
+}
+
+.dose-info {
+    min-width: 0;
+}
+
+.dose-info h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.dose-info p {
+    margin: 5px 0;
+    color: var(--muted);
+}
+
+.dose-info strong {
+    color: var(--text);
+}
+
+.dose-card.overdue {
+    background: #fffafa;
+    border-left-color: var(--danger);
+}
+
+.status-label {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-label.taken {
+    color: var(--success);
+    background: var(--success-bg);
+}
+
+.status-label.pending {
+    color: var(--warning);
+    background: var(--warning-bg);
+}
+
+.status-label.overdue,
+.status-label.missed {
+    color: var(--danger);
+    background: var(--danger-bg);
+}
+
+.dose-actions,
+.medicine-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.taken-label {
+    color: var(--success);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.empty-state h3 {
+    margin-top: 0;
+}
+
+/* Medicine management */
+
+.medicine-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.medicine-item h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+.medicine-item p {
+    margin: 4px 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.medicine-item strong {
+    color: var(--text);
+}
+
+.medicine-actions form {
+    margin: 0;
+}
+
+/* Assistant */
+
+.assistant {
+    margin-top: 30px;
+    border-top: 4px solid #5486d4;
+}
+
+.chat-box {
+    height: 280px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    background: #f8fbfd;
+    margin: 18px 0;
+}
+
+.chat-message {
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.bot-message {
+    background: #e5f5f4;
+    border-left: 4px solid var(--primary);
+}
+
+.user-message {
+    background: #e8efff;
+    border-left: 4px solid #5486d4;
+}
+
+#chat-status {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+.safety-note {
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: var(--warning-bg);
+    border-left: 4px solid #e5a43a;
+    border-radius: 9px;
+    color: #664600;
+    font-size: 14px;
+}
+
+/* Navigation */
+
+.navigation-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 26px 0;
+}
+
+.caregiver-link {
+    background: #244b67;
+    color: white;
+}
+
+.caregiver-link:hover {
+    background: #18394f;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 45px;
+    padding: 24px 18px;
+    text-align: center;
+    color: var(--muted);
+    background: #eaf1f5;
+    font-size: 13px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 760px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dose-card,
+    .medicine-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dose-actions,
+    .medicine-actions {
+        width: 100%;
+    }
+
+    .dose-actions form {
+        flex: 1;
+    }
+
+    .dose-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 18px auto;
+    }
+
+    .header {
+        padding: 23px 14px;
+    }
+
+    .welcome,
+    .card,
+    .dose-card,
+    .medicine-item {
+        padding: 18px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .dashboard-stats {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card h2 {
+        font-size: 27px;
+    }
+
+    .navigation-links {
+        flex-direction: column;
+    }
+
+    .navigation-links a {
+        width: 100%;
+    }
+
+    .primary-button {
+        align-self: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}

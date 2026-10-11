@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediMate | Caregiver Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>👨‍👩‍👧 Caregiver Dashboard</h1>
+    <p>Daily medication overview and dose tracking</p>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h2>Today's Overview</h2>
+        <p>Review recorded dose statuses and the current schedule.</p>
+        <p><strong>Date:</strong> <span id="today"></span></p>
+    </section>
+
+    <!-- Statistics -->
+    <section class="dashboard-stats">
+        <article class="stat-card">
+            <p>Total Doses</p>
+            <h2>{{ stats.total }}</h2>
+        </article>
+
+        <article class="stat-card">
+            <p>Doses Taken</p>
+            <h2>{{ stats.taken }}</h2>
+        </article>
+
+        <article class="stat-card">
+            <p>Pending Doses</p>
+            <h2>{{ stats.pending }}</h2>
+        </article>
+
+        <article class="stat-card">
+            <p>Overdue Doses</p>
+            <h2>{{ stats.overdue }}</h2>
+        </article>
+
+        <article class="stat-card">
+            <p>Marked Missed</p>
+            <h2>{{ stats.missed }}</h2>
+        </article>
+
+        <article class="stat-card">
+            <p>Doses Taken Today</p>
+            <h2>{{ stats.adherence }}%</h2>
+        </article>
+    </section>
+
+    <!-- Schedule -->
+    <section class="schedule">
+        <h2>📋 Today's Dose Status</h2>
+
+        {% if schedule %}
+            {% for item in schedule %}
+                <article class="dose-card
+                    {% if item.display_status == 'Overdue' %}overdue{% endif %}">
+
+                    <div class="dose-info">
+                        <h3>{{ item.name }}</h3>
+
+                        <p><strong>Prescribed dose:</strong> {{ item.dose }}</p>
+                        <p><strong>Scheduled time:</strong> {{ item.scheduled_time }}</p>
+
+                        <p class="status">
+                            <strong>Status:</strong>
+                            <span class="status-label {{ item.display_status|lower }}">
+                                {{ item.display_status }}
+                            </span>
+                        </p>
+                    </div>
+
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="card empty-state">
+                <h3>No doses scheduled</h3>
+                <p>No medicines have been scheduled for today.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- Information -->
+    <section class="card">
+        <h2>ℹ️ Important Information</h2>
+        <p>An overdue dose means its scheduled time has passed by more than 30 minutes and it remains pending.</p>
+        <p>A dose marked Taken reflects a recorded action, not independent confirmation that the medicine was taken.</p>
+        <p>MediMate is an organisational tool, not a medical decision-making system. Consult a healthcare professional for medication questions.</p>
+    </section>
+
+    <section class="navigation-links">
+        <a class="caregiver-link" href="{{ url_for('index') }}">
+            ← Back to Medicine Schedule
+        </a>
+
+        <a class="caregiver-link" href="{{ url_for('history') }}">
+            View Dose Records →
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>MediMate supports medication organisation and caregiver awareness.</p>
+</footer>
+
+<script>
+    document.getElementById("today").textContent =
+        new Date().toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+</script>
+
+</body>
+</html>
